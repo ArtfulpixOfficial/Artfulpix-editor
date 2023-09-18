@@ -1,5 +1,5 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
+import React from "react";
+import { observer } from "mobx-react-lite";
 import {
   Button,
   Navbar,
@@ -8,23 +8,23 @@ import {
   NavbarDivider,
   Dialog,
   Classes,
-} from '@blueprintjs/core';
-import FaGithub from '@meronex/icons/fa/FaGithub';
-import FaDiscord from '@meronex/icons/fa/FaDiscord';
-import FaTwitter from '@meronex/icons/fa/FaTwitter';
-import BiCodeBlock from '@meronex/icons/bi/BiCodeBlock';
-import BisDiamond from '@meronex/icons/bi/BisDiamond';
-import { useAuth0 } from '@auth0/auth0-react';
-import styled from 'polotno/utils/styled';
+} from "@blueprintjs/core";
+import FaGithub from "@meronex/icons/fa/FaGithub";
+import FaDiscord from "@meronex/icons/fa/FaDiscord";
+import FaTwitter from "@meronex/icons/fa/FaTwitter";
+import BiCodeBlock from "@meronex/icons/bi/BiCodeBlock";
+import BisDiamond from "@meronex/icons/bi/BisDiamond";
+import { useAuth0 } from "@auth0/auth0-react";
+import styled from "polotno/utils/styled";
 
-import { useProject } from '../project';
+import { useProject } from "../project";
 
-import { FileMenu } from './file-menu';
-import { DownloadButton } from './download-button';
-import { UserMenu } from './user-menu';
-import { SubscriptionModal } from './subscription-modal';
+import { FileMenu } from "./file-menu";
+import { DownloadButton } from "./download-button";
+import { UserMenu } from "./user-menu";
+import { SubscriptionModal } from "./subscription-modal";
 
-const NavbarContainer = styled('div')`
+const NavbarContainer = styled("div")`
   @media screen and (max-width: 500px) {
     overflow-x: auto;
     overflow-y: hidden;
@@ -32,7 +32,7 @@ const NavbarContainer = styled('div')`
   }
 `;
 
-const NavInner = styled('div')`
+const NavInner = styled("div")`
   @media screen and (max-width: 500px) {
     display: flex;
   }
@@ -101,20 +101,6 @@ export default observer(({ store }) => {
               <NavbarDivider />
             </>
           )} */}
-
-          <Button
-            intent="primary"
-            icon={<BisDiamond className="bp4-icon" />}
-            style={{ backgroundColor: 'rgba(219, 30, 186, 1)' }}
-            onClick={async () => {
-              if (!isAuthenticated) {
-                const res = await loginWithPopup();
-              }
-              setModalVisible(true);
-            }}
-          >
-            Chip in!
-          </Button>
           <SubscriptionModal
             isOpen={modalVisible}
             onClose={() => {
@@ -122,46 +108,7 @@ export default observer(({ store }) => {
             }}
             store={store}
           />
-          <AnchorButton
-            href="https://polotno.com"
-            target="_blank"
-            minimal
-            icon={
-              <BiCodeBlock className="bp4-icon" style={{ fontSize: '20px' }} />
-            }
-          >
-            API
-          </AnchorButton>
-
-          <AnchorButton
-            minimal
-            href="https://discord.gg/W2VeKgsr9J"
-            target="_blank"
-            icon={
-              <FaDiscord className="bp4-icon" style={{ fontSize: '20px' }} />
-            }
-          >
-            Join Chat
-          </AnchorButton>
-          <AnchorButton
-            minimal
-            href="https://github.com/lavrton/polotno-studio"
-            target="_blank"
-            icon={
-              <FaGithub className="bp4-icon" style={{ fontSize: '20px' }} />
-            }
-          ></AnchorButton>
-          <AnchorButton
-            minimal
-            href="https://twitter.com/lavrton"
-            target="_blank"
-            icon={
-              <FaTwitter className="bp4-icon" style={{ fontSize: '20px' }} />
-            }
-          ></AnchorButton>
-          <NavbarDivider />
           <DownloadButton store={store} />
-          <UserMenu store={store} project={project} />
           {/* <NavbarHeading>Polotno Studio</NavbarHeading> */}
         </Navbar.Group>
       </NavInner>
